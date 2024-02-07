@@ -1,3 +1,13 @@
+<?php
+include 'Config.php';
+ 
+require_once('Config.php');
+$query = "select * from riders";
+$result = mysqli_query($conn, $query);
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,21 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
 
-    <title></title>
+    <title>Operational Licensing System</title>
 
-    <script>
-      
-      var ScrollMsg= "Operational Licensing System - "
-      var CharacterPosition=0;
-      function StartScrolling() {
-      document.title=ScrollMsg.substring(CharacterPosition,ScrollMsg.length)+
-      ScrollMsg.substring(0, CharacterPosition);
-      CharacterPosition++;
-      if(CharacterPosition > ScrollMsg.length) CharacterPosition=0;
-      window.setTimeout("StartScrolling()",150); }
-      StartScrolling();
-  
-  </script>
 
   <!-- Favicon -->
   <link href="images/logo.jpg" rel="icon">
@@ -213,17 +210,13 @@
                   <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th>Picture</th>
-                        <th> Full Names</th>
-                        <th>Reg No.</th>
+                        <th>ID</th>
+                        <th>Full Names</th>
+                        <th>Date of Birth</th>
                         <th>License Number</th>
                         <th>Phone Number</th>
-                        <th>DOB</th>
                         <th>Address</th>
                         <th>Nationality</th>
-                        <th>Issuing Date</th>
-                        <th>Expiry Date</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -231,19 +224,22 @@
 
                     <tbody>
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
+                        <?php
+                          while($row = mysqli_fetch_assoc($result))
+                          {
+                            ?>
+                              <td><?php echo $row['R_id']; ?></td>
+                                <td><?php echo $row['fullname']; ?></td>
+                               <td><?php echo $row['DOB']; ?></td>
+                              <td><?php echo $row['license_no']; ?></td>
+                              <td ><?php echo $row['Phone']; ?></td>
+                              <td><?php echo $row['address']; ?></td>
+                              <td><?php echo $row['nationality']; ?></td>
+                              <td><a href="updateProfile.php"><button type="button" class="btn btn-success" ><i class="fa fa-edit"></i></button></a><a href="updateProfile.php"><button type="button" class="btn btn-primary" ><i class="fa fa-eye"></i></button></a></td>
+                            </tr>
+                            <?php
+                          }
+                          ?>
                     </tbody>
                   </table>
                 </div>
