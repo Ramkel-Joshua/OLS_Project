@@ -1,22 +1,4 @@
-<?php
-include ('Config.php');
-                                    if(isset($_POST['Submit'])){
-                                        $name=$_POST['fullname'];
-                                        $phone=$_POST['Phone'];
-                                        $address=$_POST['address'];
-                                        $cnationality=$_POST['nationality'];
-                                        $license=$_POST['license_no'];
-                                        
-
-                    $query = mysqli_query($con, "Insert into riders (fullname, Phone, address, nationality, license_no) Values ('$name', '$phone', '$address', '$nationality', '$license')");
-                    if($query) {
-                      echo "<script>alert(Data inserted Successfully!)</script>";
-                    }
-                    else {
-                      echo "<script>alert(There's an Error!)</script>";
-                    }
-  }
-?> 
+<?php include 'Config.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -213,7 +195,7 @@ include ('Config.php');
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>ADD NEW RIDERS</h2>
+                            <h2>NEW RIDER'S DETAILS</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -223,55 +205,84 @@ include ('Config.php');
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content" style="margin-left: 300px;margin-bottom: 20px;  ">
-                            <br />
-                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+                            <br>
+                           
+                            <form id="demo-form" method="POST">
 
-                                <div class="item form-group">
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <label>Full Names</label><input type="text" name="fullname" required="required" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <div class="col-md-6 col-sm-6 ">
-                                      <label>Phone Number</label> <input type="text"  name="Phone" required="required" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <div class="col-md-6 col-sm-6 ">
-                                      <label>Address</label><input type="text" name="address" required="required" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <div class="col-md-6 col-sm-6 ">
-                                      <label>Nationality</label><input type="text" name="nationality" required="required" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <div class="col-md-6 col-sm-6 ">
-                                      <label>License Number</label><input type="text" name="license_no" required="required" class="form-control" >
-                                    </div>
-                                </div>
-                               
-                                </div>
-                                <br>
+                            <?php
+                                    if(isset($_POST['Submit1'])){
+                                      $name=$_POST['fullname'];
+                                      $phone=$_POST['Phone'];
+                                      $address=$_POST['address'];
+                                      $nationality=$_POST['nationality'];
+                                      $license=$_POST['license_no'];
+                                      $DOB=$_POST['DOB'];
+                                      
 
-                                <div style="margin-left: 400px; margin-top: 20px;">
-                                    <button class="btn btn-danger" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" name="submit" class="btn btn-success">Add</button>
-                                </div>
-                               
+                                        $query= "INSERT INTO riders(R_id,fullname,Phone,address,nationality,license_no,DOB) 
+                                        VALUES('','$fullname','$phone','$address','$nationality','$license_no','$DOB')";
 
+                                        $run=mysqli_query($conn, $query);
+                                        if($run){
+                                            ?>
+        <script>
+            alert('Data Added Successfully!');
+            
+        </script>
+      <?php 
+    }
+
+    else
+    {
+      ?>
+        <script>
+            alert('Theres is an Error');
+            
+        </script>
+      <?php 
+    }
+  }
+?> 
+                          
+                            <div class="form-group row">
+												      <input type="text" class="form-control" name="fullnames" style="width:450px" placeholder="Full Names">
+											      </div>
+                           
+                            <div class="form-group row">
+											        
+												      <input type="text" class="form-control" name="Phone" style="width:450px" placeholder="Phone Number">
+											      </div>
+                           
+                            <div class="form-group row">
+											        
+												      <input type="text" class="form-control" name="license_no" style="width:450px" placeholder="License No">
+											      </div>
+                            
+                            <div class="form-group row">
+											        
+												      <input type="text" class="form-control" name="address" style="width:450px" placeholder="Address">
+											      </div>
+                           
+                            <div class="form-group row">
+                            <input type="text" class="form-control" name="nationality" style="width:450px" placeholder="Nationality">
+                         
+											      </div>
+                
+                            <div class="form-group row">
+												      <input type="date" class="form-control" name="DOB" style="width:450px">
+											      </div>
+
+                            <div class="form-group row">
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                                <button type="submit" name="submit1" class="btn btn-success">Submit</button>
+											      </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-                    </form>
                 </div>
             </div>
-        </div>
-    </div>
       <!-- /page content -->
 
         <!-- footer content -->
