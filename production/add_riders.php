@@ -1,4 +1,62 @@
-<?php include 'Config.php'; ?>
+<?php
+include 'Config.php';
+
+if(isset($_POST['submit1'])){
+    $name = $_POST['fullnames'];
+    $phone = $_POST['Phone'];
+    $address = $_POST['address'];
+    $nationality = $_POST['nationality'];
+    $license = $_POST['license_no'];
+    $DOB = $_POST['DOB'];
+
+
+
+    if (empty($name) || empty($phone) || empty($address) || empty($nationality) || empty($DOB)) {
+      echo '<script>alert("Fill all the fields before submitting!"); </script>';
+      
+    } else {
+      // Assuming $conn is your database connection variable
+      $query= "INSERT INTO riders(fullname, Phone, address, nationality, license_no, DOB) 
+      VALUES('$name', '$phone', '$address', '$nationality', '$license', '$DOB')";
+
+      $run = mysqli_query($conn, $query);
+
+      if($run){
+      echo '<script>alert("Data Added Successfully!");</script>';
+      } else {
+      echo '<script>alert("There was an Error");</script>';
+      }
+
+    }
+    
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OL System</title>
+
+    <!-- Your existing CSS and JavaScript imports remain unchanged -->
+
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <!-- Your existing HTML content remains unchanged -->
+    </div>
+</div>
+
+<!-- Your existing JavaScript imports remain unchanged -->
+</body>
+</html>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -209,40 +267,7 @@
                            
                             <form id="demo-form" method="POST">
 
-                            <?php
-                                    if(isset($_POST['Submit1'])){
-                                      $name=$_POST['fullname'];
-                                      $phone=$_POST['Phone'];
-                                      $address=$_POST['address'];
-                                      $nationality=$_POST['nationality'];
-                                      $license=$_POST['license_no'];
-                                      $DOB=$_POST['DOB'];
-                                      
-
-                                        $query= "INSERT INTO riders(R_id,fullname,Phone,address,nationality,license_no,DOB) 
-                                        VALUES('','$fullname','$phone','$address','$nationality','$license_no','$DOB')";
-
-                                        $run=mysqli_query($conn, $query);
-                                        if($run){
-                                            ?>
-        <script>
-            alert('Data Added Successfully!');
-            
-        </script>
-      <?php 
-    }
-
-    else
-    {
-      ?>
-        <script>
-            alert('Theres is an Error');
-            
-        </script>
-      <?php 
-    }
-  }
-?> 
+                            
                           
                             <div class="form-group row">
 												      <input type="text" class="form-control" name="fullnames" style="width:450px" placeholder="Full Names">
